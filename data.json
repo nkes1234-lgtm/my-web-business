@@ -1,6 +1,13 @@
 {
-  "company_name": "我的行銷公司",
-  "line_link": "https://line.me/ti/p/your_id",
-  "hero_title": "用 AI 為您的品牌賦能",
-  "hero_subtitle": "最專業的形象官網解決方案"
+  "company_name": "極光行銷顧問",
+  "line_link": "https://line.me/ti/p/你的ID",
+  "theme_color": "#2563eb",
+  "hero_title": "用 AI 驅動品牌成長",
+  "hero_subtitle": "我們提供最精準的流量轉換方案，讓您的生意源源不絕。",
+  "about_text": "我們是一家深耕於數位行銷的專業團隊，致力於協助企業實現數位轉型。",
+  "services": [
+    {"name": "品牌設計", "desc": "打造獨一無二的品牌視覺標識。"},
+    {"name": "SEO 優化", "desc": "讓您的網站在搜尋引擎名列前茅。"},
+    {"name": "廣告投放", "desc": "精準鎖定客群，極大化投資報酬率。"}
+  ]
 }

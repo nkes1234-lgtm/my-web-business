@@ -3,28 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>官網展示</title>
+    <title id="meta-title">行銷公司官網</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
-    <nav class="p-6 bg-white shadow-sm flex justify-between">
-        <h1 id="brand" class="text-xl font-bold">載入中...</h1>
-        <a id="line-btn" href="#" class="bg-green-500 text-white px-4 py-2 rounded">LINE 諮詢</a>
+<body class="bg-white text-gray-800 antialiased">
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div id="brand" class="text-2xl font-bold text-blue-600">載入中...</div>
+            <a id="line-nav" href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition">立即諮詢</a>
+        </div>
     </nav>
-    <section class="py-20 text-center">
-        <h2 id="title" class="text-5xl font-extrabold mb-4 italic">載入中...</h2>
-        <p id="subtitle" class="text-xl text-gray-600">載入中...</p>
+
+    <header class="relative py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h1 id="hero-title" class="text-5xl md:text-7xl font-black mb-8 animate__animated animate__fadeInUp">載入中...</h1>
+            <p id="hero-subtitle" class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">載入中...</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-2s">
+                <a id="line-hero" href="#" class="bg-blue-600 text-white px-10 py-4 rounded-xl text-lg font-bold hover:shadow-2xl transition shadow-lg">開始合作</a>
+                <a href="#services" class="bg-gray-100 text-gray-800 px-10 py-4 rounded-xl text-lg font-bold hover:bg-gray-200 transition">了解更多</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-16 text-center">專業服務項目</h2>
+            <div id="services-grid" class="grid md:grid-cols-3 gap-8">
+                </div>
+        </div>
     </section>
 
+    <a id="line-float" href="#" class="fixed bottom-10 right-10 bg-[#06C755] text-white p-5 rounded-full shadow-2xl hover:scale-110 transition z-50">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" class="w-8 h-8" alt="LINE">
+    </a>
+
     <script>
-        // 這是神奇的代碼，它會去讀取你剛剛寫的 data.json
-        fetch('data.json')
+        fetch('data.json?v=' + Math.random()) // 防止快取
             .then(res => res.json())
             .then(data => {
+                document.getElementById('meta-title').innerText = data.company_name;
                 document.getElementById('brand').innerText = data.company_name;
-                document.getElementById('title').innerText = data.hero_title;
-                document.getElementById('subtitle').innerText = data.hero_subtitle;
-                document.getElementById('line-btn').href = data.line_link;
+                document.getElementById('hero-title').innerText = data.hero_title;
+                document.getElementById('hero-subtitle').innerText = data.hero_subtitle;
+                
+                const lineLinks = [document.getElementById('line-nav'), document.getElementById('line-hero'), document.getElementById('line-float')];
+                lineLinks.forEach(el => el.href = data.line_link);
+
+                const grid = document.getElementById('services-grid');
+                data.services.forEach(s => {
+                    grid.innerHTML += `
+                        <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                            <h3 class="text-2xl font-bold mb-4">${s.name}</h3>
+                            <p class="text-gray-500 leading-relaxed">${s.desc}</p>
+                        </div>
+                    `;
+                });
             });
     </script>
 </body>

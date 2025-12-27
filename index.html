@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>官網展示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="p-6 bg-white shadow-sm flex justify-between">
+        <h1 id="brand" class="text-xl font-bold">載入中...</h1>
+        <a id="line-btn" href="#" class="bg-green-500 text-white px-4 py-2 rounded">LINE 諮詢</a>
+    </nav>
+    <section class="py-20 text-center">
+        <h2 id="title" class="text-5xl font-extrabold mb-4 italic">載入中...</h2>
+        <p id="subtitle" class="text-xl text-gray-600">載入中...</p>
+    </section>
+
+    <script>
+        // 這是神奇的代碼，它會去讀取你剛剛寫的 data.json
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('brand').innerText = data.company_name;
+                document.getElementById('title').innerText = data.hero_title;
+                document.getElementById('subtitle').innerText = data.hero_subtitle;
+                document.getElementById('line-btn').href = data.line_link;
+            });
+    </script>
+</body>
+</html>
